@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}DynaLect{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+             /* This ensures the background remains fixed */
+        }
+        nav {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add these properties to make the nav bar fixed */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        nav ul li {
+            margin-right: 15px;
+        }
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        nav ul li:not(:last-child) a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -7px;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 25px;
+            background-color: #ccc;
+        }
+        .nav-form {
+            display: flex;
+            align-items: center;
+        }
+        .nav-form input[type="text"] {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+        }
+        .nav-form button[type="submit"] {
+            background-color: #FFC107;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background-color: #FFC107;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .icon {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: left;
+    padding: 100px 0;
+    position: relative;
+    margin: 0;
+    width: 100vw; /* Set width to 100vw (viewport width) */
+    left: 50%;
+    transform: translateX(-50%); /* Move it back 50% of its width */
+    background-image: url("https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074076.jpg?w=826&t=st=1692287899~exp=1692288499~hmac=a11ff1847880e3b8d4ca59a557dd98dc7476b9a6b411b4d8fabc5733058c5645");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(8px);
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+    padding-right: 20px;
+    padding-left: 20px; /* Add left padding */
+    padding-top: 20px;
+    text-align: left;
+}
+
+.title {
+    font-size: 80px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* New Arrivals Section */
+.new-arrivals-section {
+    margin-top: 40px;
+}
+
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-item {
+    width: calc(33.33% - 20px);
+    margin: 0 10px 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-link {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.product-link:hover {
+    color: #007bff;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #aaa;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-name {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #007bff;
+    margin: 5px 0;
+}
+.sort-form {
+            margin-bottom: 20px;
+        }
+
+        .sort-label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .sort-select {
+            padding: 5px;
+        }
+
+        .sort-button {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .add-to-cart-button {
+            padding: 5px 10px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        /* Additional CSS for modernizing the cart page */
+.section-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-link {
+    flex-grow: 1;
+    text-decoration: none;
+    color: #333;
+}
+
+.cart-item-details {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-price {
+    margin-right: 10px;
+}
+
+.remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #d9534f;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+    background-color: #c9302c;
+}
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #449d44;
+}
+
+/* Styling for the checkout navigation bar */
+/* Styling for the checkout navigation bar */
+.checkout-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -2px 4px rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+.total-price {
+    font-size: 18px;
+    color: #333;
+    margin-left: 1050px
+}
+
+.checkout-btn {
+    background-color: #f74f12d0;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    color: #fff;
+    cursor: pointer;
+    
+}
+
+.container {
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .product-detail {
+        display: flex;
+        gap: 20px;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-name {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        font-size: 20px;
+        color: #4caf50;
+        margin-bottom: 10px;
+    }
+
+    .product-description {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .btn-container {
+        display: flex;
+        gap: 10px;
+    }
+
+    .add-to-cart-btn,
+    .buy-now-btn {
+        padding: 1px 50px;
+        font-size: 15px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .add-to-cart-btn {
+        background-color: #2196f3;
+    }
+
+    .buy-now-btn {
+        background-color: #4caf50;
+    }
+    .x-button {
+        position:relative;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        background-color: #ffffff;
+        color: #f10606;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    .x-button:hover {
+        background-color: #ee8585;
+    }
+    .account-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-section,.address-section {
+        margin-bottom: 30px;
+    }
+
+    .account-section h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .address-section h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .account-details {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    .account-details li {
+        margin-bottom: 10px;
+    }
+
+
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .logout-button {
+        background-color: #d9534f;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .logout-button:hover {
+        background-color: #c9302c;
+    }
+    .input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+}
+
+.input-group button[type="submit"] {
+    background-color: #FFC107;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.mic-button {
+    background-color: #2196f3;
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px; /* Adjust the margin to control the distance from the "Go!" button */
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/home"><i class="material-icons icon">home</i>Home</a></li>
+            <li><a href="/products"><i class="material-icons icon">store</i>Products</a></li>
+            <li><a href="/cart"><i class="material-icons icon">shopping_cart</i>Cart</a></li>
+            <li><a href="/account"><i class="material-icons icon">account_circle</i>Account</a></li>        
+        </ul>
+        <form class="nav-form" action="/process_instruction" method="post">
+            <div class="input-group">
+                <input type="text" name="instruction" id="instructionInput" placeholder="What can I do for you?">
+                <button type="submit">Go!</button>
+            </div>
+            <button id="startButton" class="mic-button">
+                <i id="micIcon" class="material-icons">mic</i>
+            </button>
+        </form>
+        <div id="output" style="color: transparent;"></div>
+
+        
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script>
+    const startButton = document.getElementById('startButton');
+const outputDiv = document.getElementById('output');
+const instructionInput = document.getElementById('instructionInput'); // Get the input element
+const form = document.querySelector('.nav-form'); // Get the form element
+
+let isRecording = false;
+
+const toggleRecording = async () => {
+    if (!isRecording) {
+        isRecording = true;
+
+        // Send a request to your FastAPI endpoint to start recording
+        const response = await fetch('/voice/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ command: 'start' })
+        });
+
+        const data = await response.json();
+        outputDiv.textContent = data.message;
+
+        // Set the value of the instruction input field
+        instructionInput.value = data.message;
+
+        // Programmatically submit the form
+        form.submit();
+    } else {
+        isRecording = false;
+        startButton.textContent = 'Start Recording';
+
+        // Send a request to your FastAPI endpoint to stop recording
+        const response = await fetch('/voice/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ command: 'stop' })
+        });
+
+        const data = await response.json();
+        outputDiv.textContent = data.message;
+
+        // Set the value of the instruction input field
+        instructionInput.value = data.message;
+
+        // Programmatically submit the form
+        form.submit();
+    }
+};
+
+startButton.addEventListener('click', toggleRecording);
+
+</script>
+
+
+    
+
+    
+</body>
+</html>

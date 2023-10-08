@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+
+<div class="account-container">
+    <h1>Your Account</h1>
+    <div class="account-section">
+        <h2>Profile Information</h2>
+        <ul class="account-details">
+            <img class="profile-photo" src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Profile Photo">
+            <li><strong>Name:</strong> {{ user.name }} </li>
+            <li><strong>Email:</strong> {{ user.email }} </li>
+            <li><strong>Phone:</strong> {{ user.phone }} </li>
+        </ul>
+    </div>
+    </div>
+    <div class="address-section">
+        <h2>Saved Address</h2>
+        <li> 123 Main St, City, Country <a href="#">Add Address</a> </li>   
+    </div>
+    <div class="account-section">
+        <h2>Payment Methods</h2>
+        <p>No saved payment methods. <a href="#">Add Payment Method</a></p>
+    </div>
+    <div class="account-section">
+        <h2>Order History</h2>
+        <p>No orders placed yet. <a href="/products">Shop Now</a></p>
+    </div>
+    <div class="account-section">
+        <form action="/logout" method="post">
+            <button class="logout-button" type="submit"><i class="material-icons icon">exit_to_app</i>Log Out</button>
+        </form>
+    </div>
+</div>
+<script>
+    function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+  </script>
+{% endblock %}

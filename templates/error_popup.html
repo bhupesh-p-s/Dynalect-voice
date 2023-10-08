@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        /* Add your styling for the error popup here */
+        .error-popup {
+    position: fixed;
+    width: 500px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(244, 67, 54, 0.8); /* Adjust the RGB values and opacity as needed */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 80%;
+    font-size: 40px;
+}
+
+.x-button {
+        position:relative;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        background-color: #ffffff;
+        color: #f10606;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 50px;
+    }
+    </style>
+</head>
+<body>
+    <div class="error-popup">
+        {{ error_message }}
+    </div>
+    <button class="x-button">X</button>
+    <script>
+        var closeButton = document.querySelector(".x-button");
+        closeButton.addEventListener("click", function() {
+            window.close();
+            history.back();
+        });
+    </script>
+</body>
+</html>
